@@ -3,4 +3,12 @@
     <!-- App label -->
     <string name="app_name">APOD Browser</string>
 
+    <!-- Misc. -->
+    <string name="apod_type_image">Image</string>
+    <string name="apod_type_video">Video</string>
+
+    <!-- Messages -->
+    <string name="message_apod_error">Something went wrong…</string>
+    <string name="message_try_again">Swipe down to try again.</string>
+
 </resources>

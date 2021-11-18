@@ -1,12 +1,9 @@
 package com.github.mathsemilio.apodbrowser.common.di
 
-import androidx.appcompat.app.AppCompatActivity
 import com.github.mathsemilio.apodbrowser.infrastructure.storage.database.ApodCacheDatabase
 
-class ActivityCompositionRoot(
-    private val activity: AppCompatActivity,
-    private val compositionRoot: CompositionRoot
-) {
+class ActivityCompositionRoot(private val compositionRoot: CompositionRoot) {
+
     private val cachedApodDatabase
         get() = ApodCacheDatabase.getDatabase(compositionRoot.application)
 

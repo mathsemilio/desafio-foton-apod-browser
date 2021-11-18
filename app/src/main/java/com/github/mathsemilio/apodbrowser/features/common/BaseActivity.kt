@@ -5,11 +5,10 @@ import com.github.mathsemilio.apodbrowser.ApodBrowserApplication
 import com.github.mathsemilio.apodbrowser.common.di.ActivityCompositionRoot
 import com.github.mathsemilio.apodbrowser.common.di.PresentationCompositionRoot
 
-class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     private val activityCompositionRoot by lazy {
         ActivityCompositionRoot(
-            activity = this,
             compositionRoot = (application as ApodBrowserApplication).compositionRoot
         )
     }

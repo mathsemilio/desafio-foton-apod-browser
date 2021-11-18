@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.apodlist.ApodListActivity">
+    tools:context=".features.apodlist.view.ApodListActivity">
+
+    <include
+        android:id="@+id/layout_apod_error_state"
+        layout="@layout/apod_list_error_state"
+        android:visibility="gone" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout_apod_list"

@@ -1,4 +1,4 @@
-package com.github.mathsemilio.apodbrowser.infrastructure.networking.model
+package com.github.mathsemilio.apodbrowser.infrastructure.networking.wrapper
 
 sealed class Result<out T>(
     val data: T? = null,

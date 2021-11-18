@@ -11,7 +11,6 @@ class ApodResourceMediator(
 ) {
     suspend fun fetchApods(): List<Apod> {
         val apods: List<Apod>
-
         val response = apodApi.fetchLatestApods()
 
         if (response.isSuccessful) {
