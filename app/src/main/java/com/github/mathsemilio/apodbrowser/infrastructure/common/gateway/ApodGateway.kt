@@ -1,12 +1,7 @@
 package com.github.mathsemilio.apodbrowser.infrastructure.common.gateway
 
-import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult
 
-class ApodGateway(private var apodResourceMediator: ApodResourceMediator) {
-
-    suspend fun fetchLatestApods() = withContext(Dispatchers.IO) {
-        apodResourceMediator.fetchApods()
-    }
+interface ApodGateway {
+    suspend fun fetchLatestApods(): ApodResourceMediatorResult
 }

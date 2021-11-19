@@ -1,7 +1,7 @@
 package com.github.mathsemilio.apodbrowser.common.di
 
 import com.github.mathsemilio.apodbrowser.features.apodlist.viewmodel.factory.ApodListViewModelFactory
-import com.github.mathsemilio.apodbrowser.infrastructure.common.gateway.ApodGateway
+import com.github.mathsemilio.apodbrowser.infrastructure.common.gateway.ApodGatewayImpl
 import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator
 import com.github.mathsemilio.apodbrowser.infrastructure.storage.manager.ApodCacheManager
 
@@ -18,7 +18,7 @@ class PresentationCompositionRoot(private val activityCompositionRoot: ActivityC
         )
 
     private val apodGateway
-        get() = ApodGateway(apodResourceMediator)
+        get() = ApodGatewayImpl(apodResourceMediator)
 
     val apodListViewModelFactory
         get() = ApodListViewModelFactory(apodGateway)
