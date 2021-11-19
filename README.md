@@ -17,7 +17,7 @@ A aplicação segue a implementação requirida no documento do desafio, com a i
 4. Injeção de dependencias feita de forma manual;
 5. Conceitos de Clean Architecture (Utilização de Fachadas, Humble Interfaces);
 6. Princípios de S.O.L.I.D (Single Responsability Principle, Dependency Inversion);
-7. Testes unitários da camada de domínio.
+7. Teste unitário da ViewModel da tela de lista de APODs.
 
 ## Bibliotecas de terceiros utilizadas
 1. Material Design;
