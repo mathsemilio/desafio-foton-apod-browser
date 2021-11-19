@@ -4,11 +4,11 @@ import com.github.mathsemilio.apodbrowser.infrastructure.storage.database.ApodCa
 
 class ActivityCompositionRoot(private val compositionRoot: CompositionRoot) {
 
-    private val cachedApodDatabase
+    private val apodCacheDatabase
         get() = ApodCacheDatabase.getDatabase(compositionRoot.application)
 
     val apodCacheDao
-        get() = cachedApodDatabase.apodCacheDao
+        get() = apodCacheDatabase.apodCacheDao
 
     val application
         get() = compositionRoot.application

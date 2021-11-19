@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mathsemilio.apodbrowser.features.apodlist.model.Apod
 import com.github.mathsemilio.apodbrowser.infrastructure.common.gateway.ApodGateway
-import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult.FetchedFromNetwork
-import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult.FetchedFromCache
-import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult.NetworkError
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediatorResult.FetchedFromNetwork
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediatorResult.FetchedFromCache
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediatorResult.NetworkError
 
 import kotlinx.coroutines.launch
 

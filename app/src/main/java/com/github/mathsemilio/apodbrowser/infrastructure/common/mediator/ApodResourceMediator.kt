@@ -12,42 +12,37 @@ class ApodResourceMediator(
     private val apodApi: ApodApi,
     private val apodCacheManager: ApodCacheManager
 ) {
-    sealed class ApodResourceMediatorResult {
-        data class FetchedFromNetwork(val apods: List<Apod>) : ApodResourceMediatorResult()
-
-        data class FetchedFromCache(val apods: List<Apod>) : ApodResourceMediatorResult()
-
-        object NetworkError : ApodResourceMediatorResult()
-    }
-
     suspend fun fetchApods(): ApodResourceMediatorResult {
         return if (hasNetworkConnection(context)) {
             val response = apodApi.fetchLatestApods()
+            val apodsFromResponse = response.body()?.toApodList()?.reversed() ?: emptyList()
 
-            return if (response.isSuccessful) {
-                val apodsFromResponse = response.body()?.toApodList()?.reversed() ?: emptyList()
-
-                if (apodCacheManager.isCacheEmpty()) {
-                    apodCacheManager.updateCache(apodsFromResponse)
-                    ApodResourceMediatorResult.FetchedFromNetwork(apodsFromResponse)
-                } else {
-                    apodCacheManager.invalidateCache()
-                    apodCacheManager.updateCache(apodsFromResponse)
-                    ApodResourceMediatorResult.FetchedFromCache(apodCacheManager.fetchCachedData())
-                }
+            if (response.isSuccessful) {
+                onSuccessfulResponse(apodsFromResponse)
             } else {
-                if (apodCacheManager.isCacheEmpty()) {
-                    ApodResourceMediatorResult.NetworkError
-                } else {
-                    ApodResourceMediatorResult.FetchedFromCache(apodCacheManager.fetchCachedData())
-                }
+                onNetworkError()
             }
         } else {
-            if (apodCacheManager.isCacheEmpty()) {
-                ApodResourceMediatorResult.NetworkError
-            } else {
-                ApodResourceMediatorResult.FetchedFromCache(apodCacheManager.fetchCachedData())
-            }
+            onNetworkError()
+        }
+    }
+
+    private suspend fun onNetworkError(): ApodResourceMediatorResult {
+        return if (apodCacheManager.isCacheEmpty()) {
+            ApodResourceMediatorResult.NetworkError
+        } else {
+            ApodResourceMediatorResult.FetchedFromCache(apodCacheManager.fetchCachedData())
+        }
+    }
+
+    private suspend fun onSuccessfulResponse(response: List<Apod>): ApodResourceMediatorResult {
+        return if (apodCacheManager.isCacheEmpty()) {
+            apodCacheManager.updateCache(response)
+            ApodResourceMediatorResult.FetchedFromNetwork(response)
+        } else {
+            apodCacheManager.invalidateCache()
+            apodCacheManager.updateCache(response)
+            ApodResourceMediatorResult.FetchedFromCache(apodCacheManager.fetchCachedData())
         }
     }
 }

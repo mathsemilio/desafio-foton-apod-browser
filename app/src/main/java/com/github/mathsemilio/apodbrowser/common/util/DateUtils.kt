@@ -3,9 +3,9 @@ package com.github.mathsemilio.apodbrowser.common.util
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun getDaysIn(dayRange: Int): String {
+fun getDaysIn(range: Int): String {
     val calendar = Calendar.getInstance().apply {
-        add(Calendar.DAY_OF_YEAR, -dayRange)
+        add(Calendar.DAY_OF_YEAR, -range)
     }
 
     return calendar.timeInMillis.formatTimeInMillis()

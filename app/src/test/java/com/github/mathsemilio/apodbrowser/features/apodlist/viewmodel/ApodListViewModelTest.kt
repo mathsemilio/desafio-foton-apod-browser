@@ -3,7 +3,7 @@ package com.github.mathsemilio.apodbrowser.features.apodlist.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.mathsemilio.apodbrowser.data.ApodTestDataProvider
 import com.github.mathsemilio.apodbrowser.infrastructure.common.gateway.ApodGateway
-import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediatorResult
 import com.github.mathsemilio.apodbrowser.rule.MainDispatcherCoroutineRule
 import com.github.mathsemilio.apodbrowser.util.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi

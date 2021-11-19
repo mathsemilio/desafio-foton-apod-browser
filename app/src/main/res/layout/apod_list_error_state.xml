@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/image_view_apod_error_illustration"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="@dimen/error_illustration"
+        android:layout_height="@dimen/error_illustration"
         android:layout_gravity="center_horizontal"
         android:importantForAccessibility="no"
         android:src="@drawable/dr_undraw_stars_re_6je7"
@@ -21,7 +21,7 @@
         android:id="@+id/text_view_apod_error_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:text="@string/message_apod_error"
         android:textAppearance="?textAppearanceTitleLarge"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         android:id="@+id/text_view_apod_try_again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:text="@string/message_try_again"
         android:textAppearance="?textAppearanceBodyMedium"
         app:layout_constraintEnd_toEndOf="parent"
