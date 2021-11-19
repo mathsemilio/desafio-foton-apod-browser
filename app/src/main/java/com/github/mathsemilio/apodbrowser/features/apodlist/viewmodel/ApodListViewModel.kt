@@ -5,14 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mathsemilio.apodbrowser.features.apodlist.model.Apod
-import com.github.mathsemilio.apodbrowser.infrastructure.networking.gateway.ApodGateway
-import com.github.mathsemilio.apodbrowser.infrastructure.networking.wrapper.Result
+import com.github.mathsemilio.apodbrowser.infrastructure.common.gateway.ApodGateway
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult.FetchedFromNetwork
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult.FetchedFromCache
+import com.github.mathsemilio.apodbrowser.infrastructure.common.mediator.ApodResourceMediator.ApodResourceMediatorResult.NetworkError
+
 import kotlinx.coroutines.launch
 
 class ApodListViewModel(private val apodGateway: ApodGateway) : ViewModel() {
 
     sealed class ViewState {
         data class FetchApodsCompleted(val apods: List<Apod>) : ViewState()
+
         object FetchApodsFailed : ViewState()
     }
 
@@ -25,10 +29,9 @@ class ApodListViewModel(private val apodGateway: ApodGateway) : ViewModel() {
         viewModelScope.launch {
             apodGateway.fetchLatestApods().also { result ->
                 _viewState.value = when (result) {
-                    is Result.Completed ->
-                        ViewState.FetchApodsCompleted(apods = result.data ?: emptyList())
-                    is Result.Failed ->
-                        ViewState.FetchApodsFailed
+                    is FetchedFromCache -> ViewState.FetchApodsCompleted(result.apods)
+                    is FetchedFromNetwork -> ViewState.FetchApodsCompleted(result.apods)
+                    NetworkError -> ViewState.FetchApodsFailed
                 }
             }
         }
